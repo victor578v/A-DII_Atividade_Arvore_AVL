@@ -9,15 +9,32 @@ class Node:
         if node is None:
             return 0
         return node.height
-    def update_height(self,node):
+    def update_height(self):
         left_height = self.get_height(self.left)
         right_height = self.get_height(self.right)
-        node.height = max(left_height,right_height)
+        self.height = max(left_height,right_height)
     def get_balance_factor(self,node):
         if node is None:
             return 0
         return self.get_height(self.left) - self.get_height(self.right)
-          
+    def rotate_left(self,node):
+        z = node
+        y = node.right
+        t2 = y.left
+        y.left = z
+        z.right = t2
+        z.update_height(z)
+        y.update_height(y)
+        return y
+    def rotate_right(self,node):
+        z = node
+        y = node.left
+        t3 = y.right
+        y.right = z
+        z.left = t3
+        z.update_height()
+        y.update_height()
+        return y
 
 class Arvore:
     def __init__(self):
