@@ -1,9 +1,9 @@
 # A&DII_Atividade_Arvore_AVL
 ## Sequencia de numeros da arvore avaliados: 10, 5, 15, 3, 1, 20, 25, 18
 
-Objetivo: Compreender a lógica de balanceamento (rotações) numa árvore AVL, implementada de forma iterativa (com laços) dentro da função Inserir.
+**Objetivo:** Compreender a lógica de balanceamento (rotações) numa árvore AVL, implementada de forma iterativa (com laços) dentro da função Inserir.
 Contexto: Partimos do princípio que vocês já possuem uma Árvore Binária de Busca (BST) funcional em Python, com uma Classe Node e uma Classe Arvore (com funções inserir e buscar iterativas).
-Parte 1: Modificações Essenciais
+### **Parte 1:** Modificações Essenciais
 A nossa Classe Node precisa de uma nova informação:
 1. Atributo altura:
 No __init__ da Classe Node, adicione self.altura = 1. Todo novo nó, quando inserido como folha, tem altura 1.
