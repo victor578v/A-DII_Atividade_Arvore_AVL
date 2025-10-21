@@ -21,44 +21,44 @@ class Node:
 
 class Arvore:
     def __init__(self):
-        self.raiz = None
+        self.root = None
 
-    def inserir(self, valor):
-        if self.raiz is None:
-            self.raiz = Node(valor)
+    def insert(self, value):
+        if self.root is None:
+            self.root = Node(value)
             return
 
-        no_atual = self.raiz
+        node = self.root
 
         while True:
-            if valor < no_atual.valor:
-                if no_atual.esquerda is None:
-                    no_atual.esquerda = Node(valor)
+            if value < node.value:
+                if node.left is None:
+                    node.left = Node(value)
                     break
                 else:
-                    no_atual = no_atual.esquerda
+                    node = node.left
 
-            elif valor > no_atual.valor:
-                if no_atual.direita is None:
-                    no_atual.direita = Node(valor)
+            elif value > node.value:
+                if node.right is None:
+                    node.right = Node(value)
                     break
                 else:
-                    no_atual = no_atual.direita
+                    node = node.right
 
             else:
                 break
 
-    def buscar(self, valor):
-        no_atual = self.raiz
+    def buscar(self, value):
+        node = self.root
 
-        if no_atual is None:
+        if node is None:
             return False
 
-        while no_atual is not None:
-            if valor == no_atual.valor:
+        while node is not None:
+            if value == node.value:
                 return True
-            elif valor < no_atual.valor:
-                no_atual = no_atual.esquerda
+            elif value < node.value:
+                node = node.left
             else:
-                no_atual = no_atual.direita
+                node = node.right
         return False
