@@ -24,52 +24,31 @@ Se o nó for Nulo, retorna 0.
 Calcula obter_altura(no.filho_esquerda) - obter_altura(no.filho_direita).
 O resultado (fator) ideal é -1, 0 ou 1. Se for > 1 (maior que 1), a árvore está "pesada" para a esquerda. Se for < -1 (menor que -1), está "pesada" para a direita.
 
-Parte 2: O Algoritmo Inserir da AVL (Iterativo)
-
+### **Parte 2:** O Algoritmo Inserir da AVL (Iterativo)
 Este algoritmo é dividido em duas grandes fases: (A) a inserção normal da BST, mas "gravando o caminho", e (B) a "subida" de volta para a raiz, verificando o balanceamento.
 
-Fase A: Inserção Normal (BST) + Rastreamento do Caminho
-
+**Fase A:** Inserção Normal (BST) + Rastreamento do Caminho
 O desafio de não usar recursão é que, após descer até uma folha para inserir, precisamos "subir" de volta para a raiz. Para fazer isso, vamos usar uma lista para "gravar" cada nó que visitamos no caminho da raiz até o local de inserção.
 
-Crie o novo_no (com valor_para_inserir e altura = 1).
-
-Crie uma lista (ou pilha) vazia chamada caminho.
-
-Tratar Árvore Vazia: Se a raiz da árvore for Nula, atribua o novo_no à raiz e termine a função.
-
-Encontrar o Local:
-
-Inicie um ponteiro atual na raiz.
-
-Inicie um laço (while True):
-
-IMPORTANTE: Adicione o nó atual à lista caminho.
-
-Compare o valor_para_inserir com atual.valor:
-
-Caso Menor:
-
-Se atual.filho_esquerda for Nulo:
-
-Atribua o novo_no como atual.filho_esquerda.
-
-Termine o laço (break).
-
-Se não for Nulo:
-
-Mova o ponteiro atual para atual.filho_esquerda.
-
-Caso Maior:
-
-Se atual.filho_direita for Nulo:
-
-Atribua o novo_no como atual.filho_direita.
-
-Termine o laço (break).
-
-Se não for Nulo:
-
-Mova o ponteiro atual para atual.filho_direita.
+1. Crie o novo_no (com valor_para_inserir e altura = 1).
+2. Crie uma lista (ou pilha) vazia chamada caminho.
+3. Tratar Árvore Vazia: Se a raiz da árvore for Nula, atribua o novo_no à raiz e termine a função.
+4. *Encontrar o Local:*
+  * Inicie um ponteiro atual na raiz.
+  * Inicie um laço (while True):
+      **IMPORTANTE:** Adicione o nó atual à lista caminho.
+      Compare o valor_para_inserir com atual.valor:
+      **Caso Menor:**
+        Se atual.filho_esquerda for Nulo:
+          Atribua o novo_no como atual.filho_esquerda.
+          Termine o laço (break).
+        Se não for Nulo:
+          Mova o ponteiro atual para atual.filho_esquerda.
+      **Caso Maior:** 
+        Se atual.filho_direita for Nulo:
+          Atribua o novo_no como atual.filho_direita.
+          Termine o laço (break).
+        Se não for Nulo:
+          Mova o ponteiro atual para atual.filho_direita.
 
 Ao fim desta fase, o novo_no foi inserido e a lista caminho contém todos os ancestrais dele, da raiz até o seu pai.
