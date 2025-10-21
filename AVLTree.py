@@ -79,3 +79,28 @@ class Arvore:
             else:
                 node = node.right
         return False
+
+        def insert_avl(self, value):
+        new_node = Node(value)
+        if self.root is None:
+            self.root = new_node
+            return
+        path = []
+        current = self.root
+        while True:
+            path.append(current)
+            if new_node.value < current.value:
+                if current.left is None:
+                    current.left = new_node
+                    break
+                else: 
+                    current = current.left
+            elif new_node.value > current.value:
+                if current.right is None:
+                    current.right = new_node
+                    break
+                else:
+                    current = current.right
+            else:
+                return
+            print(f"Nó {value} inserido")
