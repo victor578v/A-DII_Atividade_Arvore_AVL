@@ -34,21 +34,21 @@ O desafio de não usar recursão é que, após descer até uma folha para inseri
 2. Crie uma lista (ou pilha) vazia chamada caminho.
 3. Tratar Árvore Vazia: Se a raiz da árvore for Nula, atribua o novo_no à raiz e termine a função.
 4. *Encontrar o Local:*
-   Inicie um ponteiro atual na raiz.
-   Inicie um laço (while True):
-      **IMPORTANTE:** Adicione o nó atual à lista caminho.
-      Compare o valor_para_inserir com atual.valor:
-      **Caso Menor:**
-        Se atual.filho_esquerda for Nulo:
-          Atribua o novo_no como atual.filho_esquerda.
-          Termine o laço (break).
-        Se não for Nulo:
-          Mova o ponteiro atual para atual.filho_esquerda.
-      **Caso Maior:** 
-        Se atual.filho_direita for Nulo:
-          Atribua o novo_no como atual.filho_direita.
-          Termine o laço (break).
-        Se não for Nulo:
-          Mova o ponteiro atual para atual.filho_direita.
+4.1. Inicie um ponteiro atual na raiz.
+4.2. Inicie um laço (while True):
+**IMPORTANTE:** Adicione o nó atual à lista caminho.
+Compare o valor_para_inserir com atual.valor:
+**Caso Menor:**
+Se atual.filho_esquerda for Nulo:
+Atribua o novo_no como atual.filho_esquerda.
+Termine o laço (break).
+Se não for Nulo:
+Mova o ponteiro atual para atual.filho_esquerda.
+**Caso Maior:** 
+Se atual.filho_direita for Nulo:
+Atribua o novo_no como atual.filho_direita.
+Termine o laço (break).
+Se não for Nulo:
+Mova o ponteiro atual para atual.filho_direita.
 
 Ao fim desta fase, o novo_no foi inserido e a lista caminho contém todos os ancestrais dele, da raiz até o seu pai.
