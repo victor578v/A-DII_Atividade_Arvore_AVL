@@ -34,8 +34,8 @@ O desafio de não usar recursão é que, após descer até uma folha para inseri
 2. Crie uma lista (ou pilha) vazia chamada caminho.
 3. Tratar Árvore Vazia: Se a raiz da árvore for Nula, atribua o novo_no à raiz e termine a função.
 4. *Encontrar o Local:*
-  * Inicie um ponteiro atual na raiz.
-  * Inicie um laço (while True):
+   Inicie um ponteiro atual na raiz.
+   Inicie um laço (while True):
       **IMPORTANTE:** Adicione o nó atual à lista caminho.
       Compare o valor_para_inserir com atual.valor:
       **Caso Menor:**
