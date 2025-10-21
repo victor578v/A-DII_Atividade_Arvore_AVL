@@ -48,7 +48,7 @@ class Arvore:
             else:
                 break
 
-    def buscar(self, value):
+    def search(self, value):
         node = self.root
 
         if node is None:
