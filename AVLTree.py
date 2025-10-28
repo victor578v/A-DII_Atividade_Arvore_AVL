@@ -1,5 +1,5 @@
 class Node:
-    def __int__(self, value):
+    def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
@@ -53,6 +53,7 @@ class Arvore:
 
         while node is not None:
             if value == node.value:
+                print("found")
                 return True
             elif value < node.value:
                 node = node.left
@@ -87,26 +88,29 @@ class Arvore:
 
         reversed = path[::-1]
 
-        for item, index in reversed:  # index para encontrar o nó ancestral
-            updated_height = item.update_height(item)
-            balance_factor = item.get_balance_factor(item)
+        for i in range(len(reversed)):  # index para encontrar o nó ancestral
+            balance_factor = reversed[i].get_balance_factor(reversed[i])
 
             if balance_factor > 1:
-                if new_node.value < item.left:
-                    item.rotate_left(item)
+                if new_node.value < reversed[i].left:
+                    reversed[i].rotate_left(reversed[i])
                 else:
-                    item.rotate_left(item.left)
-                    item.rotate_right(item)
+                    reversed[i].rotate_left(reversed[i].left)
+                    reversed[i].rotate_right(reversed[i])
             if balance_factor < -1:
-                if new_node.value > item.right:
-                    item.rotate_left(item)
+                if new_node.value > reversed[i].right:
+                    reversed[i].rotate_left(reversed[i])
                 else:
-                    item.rotate_right(item.right)
-                    item.rotate_left(item)
+                    reversed[i].rotate_right(reversed[i].right)
+                    reversed[i].rotate_left(reversed[i])
 
 
 arvore = Arvore()
 
 values = [10, 5, 15, 3, 1, 20, 25, 18]
 
+for value in values:
+    arvore.insert(value)
+
 arvore.insert(values)
+arvore.search(20)
