@@ -45,31 +45,6 @@ class Arvore:
     def __init__(self):
         self.root = None
 
-    def insert(self, value):
-        if self.root is None:
-            self.root = Node(value)
-            return
-
-        node = self.root
-
-        while True:
-            if value < node.value:
-                if node.left is None:
-                    node.left = Node(value)
-                    break
-                else:
-                    node = node.left
-
-            elif value > node.value:
-                if node.right is None:
-                    node.right = Node(value)
-                    break
-                else:
-                    node = node.right
-
-            else:
-                break
-
     def search(self, value):
         node = self.root
 
@@ -85,7 +60,7 @@ class Arvore:
                 node = node.right
         return False
 
-        def insert_avl(self, value):
+        def insert(self, value):
             new_node = Node(value)
             if self.root is None:
                 self.root = new_node
