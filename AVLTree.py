@@ -60,54 +60,46 @@ class Arvore:
                 node = node.right
         return False
 
-        def insert(self, value):
-            new_node = Node(value)
-            if self.root is None:
-                self.root = new_node
-                return
-            path = []
-            current = self.root
-            while True:
-                path.append(current)
-                if new_node.value < current.value:
-                    if current.left is None:
-                        current.left = new_node
-                        break
-                    else:
-                        current = current.left
-                elif new_node.value > current.value:
-                    if current.right is None:
-                        current.right = new_node
-                        break
-                    else:
-                        current = current.right
+    def insert(self, value):
+        new_node = Node(value)
+        if self.root is None:
+            self.root = new_node
+            return
+        path = []
+        current = self.root
+        while True:
+            path.append(current)
+            if new_node.value < current.value:
+                if current.left is None:
+                    current.left = new_node
+                    break
                 else:
-                    return
-                print(f"Nó {value} inserido")
+                    current = current.left
+            elif new_node.value > current.value:
+                if current.right is None:
+                    current.right = new_node
+                    break
+                else:
+                    current = current.right
+            else:
+                return
+            print(f"Nó {value} inserido")
 
-            reversed = path[::-1]
+        reversed = path[::-1]
 
-            for item, index in reversed:  # index para encontrar o nó ancestral
-                updated_height = item.update_height(item)
-                balance_factor = item.get_balance_factor(item)
+        for item, index in reversed:  # index para encontrar o nó ancestral
+            updated_height = item.update_height(item)
+            balance_factor = item.get_balance_factor(item)
 
                 if balance_factor > 1:
                     if new_node.value < item.left:
                         item.rotate_left(item)
-                        if index < len(reversed):
-                            reversed[index+1].left = item
                     else:
                         item.rotate_left(item.left)
                         item.rotate_right(item)
-                        if index < len(reversed):
-                            reversed[index+1].left = item
                 if balance_factor < -1:
                     if new_node.value > item.right:
                         item.rotate_left(item)
-                        if index < len(reversed):
-                            reversed[index+1].right = item
                     else:
                         item.rotate_right(item.right)
                         item.rotate_left(item)
-                        if index < len(reversed):
-                            reversed[index+1].right = item
