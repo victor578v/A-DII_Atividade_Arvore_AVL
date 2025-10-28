@@ -129,7 +129,6 @@ class Arvore:
                 else:
                     parent_of_node.right = new_subroot
             else:
-                # node was root
                 self.root = new_subroot
 
 
