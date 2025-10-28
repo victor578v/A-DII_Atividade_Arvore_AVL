@@ -18,7 +18,13 @@ class Node:
     def get_balance_factor(self, node):
         if node is None:
             return 0
-        return self.get_height(self.left) - self.get_height(self.right)
+        left = 0
+        if self.left is not None:
+            self.get_height(self.left)
+        right = 0
+        if self.right is not None:
+            self.get_height(self.right)
+        return left - right
 
     def rotate_left(self, node):
         z = node
@@ -112,5 +118,4 @@ values = [10, 5, 15, 3, 1, 20, 25, 18]
 for value in values:
     arvore.insert(value)
 
-arvore.insert(values)
 arvore.search(20)
