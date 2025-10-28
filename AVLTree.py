@@ -3,42 +3,32 @@ class Node:
         self.value = value
         self.left = None
         self.right = None
-        self.height = None
+        self.height = 1
 
-    def get_height(self, node):
+    def get_height(node):
         if node is None:
             return 0
         return node.height
 
     def update_height(self):
-        left_height = self.get_height(self.left)
-        right_height = self.get_height(self.right)
-        self.height = max(left_height, right_height)
+        left_height = Node.get_height(self.left)
+        right_height = Node.get_height(self.right)
+        self.height = 1 + max(left_height, right_height)
 
-    def get_balance_factor(self, node):
-        if node is None:
-            return 0
-        left = 0
-        if self.left is not None:
-            self.get_height(self.left)
-        right = 0
-        if self.right is not None:
-            self.get_height(self.right)
-        return left - right
+    def get_balance_factor(self):
+        return Node.get_height(self.left) - Node.get_height(self.right)
 
-    def rotate_left(self, node):
-        z = node
-        y = node.right
+    def rotate_left(z):
+        y = z.right
         t2 = y.left
         y.left = z
         z.right = t2
-        z.update_height(z)
-        y.update_height(y)
+        z.update_height()
+        y.update_height()
         return y
 
-    def rotate_right(self, node):
-        z = node
-        y = node.left
+    def rotate_right(z):
+        y = z.left
         t3 = y.right
         y.right = z
         z.left = t3
@@ -53,10 +43,8 @@ class Arvore:
 
     def search(self, value):
         node = self.root
-
         if node is None:
             return False
-
         while node is not None:
             if value == node.value:
                 print("found")
@@ -71,55 +59,70 @@ class Arvore:
         new_node = Node(value)
         if self.root is None:
             self.root = new_node
+            print(f"Nó {value} inserido")
             return
-        path = []
+
+        path = [] 
         current = self.root
-        while True:
+        parent = None
+        while current is not None:
+            parent = current
             path.append(current)
-            if new_node.value < current.value:
-                if current.left is None:
-                    current.left = new_node
-                    break
-                else:
-                    current = current.left
-            elif new_node.value > current.value:
-                if current.right is None:
-                    current.right = new_node
-                    break
-                else:
-                    current = current.right
+            if value < current.value:
+                current = current.left
+            elif value > current.value:
+                current = current.right
             else:
                 return
-            print(f"Nó {value} inserido")
 
-        reversed = path[::-1]
+        if value < parent.value:
+            parent.left = new_node
+        else:
+            parent.right = new_node
+        path.append(new_node)
+        print(f"Nó {value} inserido")
 
-        for i in range(len(reversed)):  # index para encontrar o nó ancestral
-            balance_factor = reversed[i].get_balance_factor(reversed[i])
+        for i in range(len(path) - 1, -1, -1):
+            node = path[i]
+            node.update_height()
+            balance = node.get_balance_factor()
 
-            if balance_factor > 1:
-                if new_node.value < reversed[i].left:
-                    reversed[i].rotate_left(reversed[i])
+            if balance > 1:
+                if value < node.left.value:
+                    new_subroot = Node.rotate_right(node)
                     print("rotate LL")
                 else:
-                    reversed[i].rotate_left(reversed[i].left)
-                    reversed[i].rotate_right(reversed[i])
+                    node.left = Node.rotate_left(node.left)
+                    new_subroot = Node.rotate_right(node)
                     print("rotate LR")
-            if balance_factor < -1:
-                if new_node.value > reversed[i].right:
-                    reversed[i].rotate_left(reversed[i])
+
+            elif balance < -1:
+                if value > node.right.value:
+                    new_subroot = Node.rotate_left(node)
                     print("rotate RR")
                 else:
-                    reversed[i].rotate_right(reversed[i].right)
-                    reversed[i].rotate_left(reversed[i])
+                    node.right = Node.rotate_right(node.right)
+                    new_subroot = Node.rotate_left(node)
                     print("rotate RL")
+            else:
+                new_subroot = node
+
+            if i - 1 >= 0:
+                parent_of_node = path[i - 1]
+                if parent_of_node.left is node:
+                    parent_of_node.left = new_subroot
+                else:
+                    parent_of_node.right = new_subroot
+            else:
+                # node was root
+                self.root = new_subroot
 
 
 arvore = Arvore()
 
 values = [10, 5, 15, 3, 1, 20, 25, 18]
 
-# for value in values:
-#     arvore.insert(value)
-#
-# arvore.search(20)
+for v in values:
+    arvore.insert(v)
+
+arvore.search(20)
