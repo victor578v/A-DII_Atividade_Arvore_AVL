@@ -100,22 +100,26 @@ class Arvore:
             if balance_factor > 1:
                 if new_node.value < reversed[i].left:
                     reversed[i].rotate_left(reversed[i])
+                    print("rotate LL")
                 else:
                     reversed[i].rotate_left(reversed[i].left)
                     reversed[i].rotate_right(reversed[i])
+                    print("rotate LR")
             if balance_factor < -1:
                 if new_node.value > reversed[i].right:
                     reversed[i].rotate_left(reversed[i])
+                    print("rotate RR")
                 else:
                     reversed[i].rotate_right(reversed[i].right)
                     reversed[i].rotate_left(reversed[i])
+                    print("rotate RL")
 
 
 arvore = Arvore()
 
 values = [10, 5, 15, 3, 1, 20, 25, 18]
 
-for value in values:
-    arvore.insert(value)
-
-arvore.search(20)
+# for value in values:
+#     arvore.insert(value)
+#
+# arvore.search(20)
