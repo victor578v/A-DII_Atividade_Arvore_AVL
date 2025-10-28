@@ -91,15 +91,22 @@ class Arvore:
             updated_height = item.update_height(item)
             balance_factor = item.get_balance_factor(item)
 
-                if balance_factor > 1:
-                    if new_node.value < item.left:
-                        item.rotate_left(item)
-                    else:
-                        item.rotate_left(item.left)
-                        item.rotate_right(item)
-                if balance_factor < -1:
-                    if new_node.value > item.right:
-                        item.rotate_left(item)
-                    else:
-                        item.rotate_right(item.right)
-                        item.rotate_left(item)
+            if balance_factor > 1:
+                if new_node.value < item.left:
+                    item.rotate_left(item)
+                else:
+                    item.rotate_left(item.left)
+                    item.rotate_right(item)
+            if balance_factor < -1:
+                if new_node.value > item.right:
+                    item.rotate_left(item)
+                else:
+                    item.rotate_right(item.right)
+                    item.rotate_left(item)
+
+
+arvore = Arvore()
+
+values = [10, 5, 15, 3, 1, 20, 25, 18]
+
+arvore.insert(values)
