@@ -94,12 +94,20 @@ class Arvore:
                 if balance_factor > 1:
                     if new_node.value < item.left:
                         item.rotate_left(item)
+                        if index < len(reversed):
+                            reversed[index+1].left = item
                     else:
                         item.rotate_left(item.left)
                         item.rotate_right(item)
+                        if index < len(reversed):
+                            reversed[index+1].left = item
                 if balance_factor < -1:
                     if new_node.value > item.right:
                         item.rotate_left(item)
+                        if index < len(reversed):
+                            reversed[index+1].right = item
                     else:
                         item.rotate_right(item.right)
                         item.rotate_left(item)
+                        if index < len(reversed):
+                            reversed[index+1].right = item
