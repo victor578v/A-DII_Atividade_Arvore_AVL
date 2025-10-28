@@ -47,13 +47,28 @@ class Arvore:
             return False
         while node is not None:
             if value == node.value:
-                print("found")
                 return True
             elif value < node.value:
                 node = node.left
             else:
                 node = node.right
         return False
+    
+    def treeprint(self, node=None):
+        if node is None:
+            node = self.root
+        if node is None:
+            return "Vazio"
+        if node.left:
+            left_str = self.treeprint(node.left)  
+        else:
+            left_str = "Vazio"
+        if node.right:
+            right_str = self.treeprint(node.right)
+        else:
+            right_str = "Vazio"
+        return f"{node.value} -> (Filho Esquerda: {left_str} - Filho Direita: {right_str})"
+
 
     def insert(self, value):
         new_node = Node(value)
@@ -125,4 +140,4 @@ values = [10, 5, 15, 3, 1, 20, 25, 18]
 for v in values:
     arvore.insert(v)
 
-arvore.search(20)
+print(arvore.treeprint())
